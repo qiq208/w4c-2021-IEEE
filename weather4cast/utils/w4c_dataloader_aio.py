@@ -158,7 +158,9 @@ class NWCSAF(Dataset):
                         'out': {'day_in_year': [day_id],'masks': in_info['masks']}}
 
         if self.apply_data_aug:
-            in_seq, out_seq = self.apply_random_transforms(in_seq,out_seq)
+            in_seq, out_seq = self.apply_random_transforms(torch.from_numpy(in_seq),torch.from_numpy(out_seq))
+            in_seq = in_seq.numpy()
+            out_seq = out_seq.numpy()
         in_seq = in_seq.astype(np.float32)
         out_seq = out_seq.astype(np.float32)
         #print('a')
